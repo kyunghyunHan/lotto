@@ -1,0 +1,15 @@
+{
+  "name": "lotto",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "lotto_bg.wasm",
+    "lotto.js",
+    "lotto.d.ts"
+  ],
+  "main": "lotto.js",
+  "types": "lotto.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

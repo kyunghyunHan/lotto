@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO 메타 태그 -->
     <title>로또 & 연금복권 번호 생성기 | 무료 번호 추첨</title>
     <meta name="description" content="무료 로또 및 연금복권 번호 자동 생성기입니다. 클릭 한 번으로 행운의 번호를 생성해보세요. 로또 6/45와 연금복권 720+ 번호 생성!">
     <meta name="keywords" content="로또, 연금복권, 로또번호생성기, 연금복권번호생성기, 자동번호생성, 무료로또, 로또추첨, 행운번호">
-    
+
     <!-- Open Graph 태그 -->
     <meta property="og:title" content="로또 & 연금복권 번호 생성기">
     <meta property="og:description" content="무료 로또 및 연금복권 번호 자동 생성기입니다. 클릭 한 번으로 행운의 번호를 생성해보세요.">
     <meta property="og:type" content="website">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4395265987753461"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <style>
         :root {
             --primary-color: #4CAF50;
@@ -153,6 +154,7 @@
     </style>
 
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -177,10 +179,8 @@
                 <button onclick="generatePensionNumbers()">연금복권번호 생성</button>
             </div>
         </div>
-        <ins class="kakao_ad_area" style="display:none;"
-        data-ad-unit = "DAN-XEEh0m641Doe0rgm"
-        data-ad-width = "300"
-        data-ad-height = "250"></ins>
+        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-XEEh0m641Doe0rgm" data-ad-width="300"
+            data-ad-height="250"></ins>
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         <footer>
             <p>※ 본 서비스는 무료로 제공되며, 당첨을 보장하지 않습니다.</p>
@@ -189,14 +189,14 @@
     </div>
 
     <script type="module">
-        import init, { generate_lotto_numbers_wasm, generate_pension_numbers_wasm } from './lotto-a1d6c6f6d45605c5.js';
-        await init("./lotto-a1d6c6f6d45605c5_bg.wasm");
+        import init, { generate_lotto_numbers_wasm, generate_pension_numbers_wasm } from "./pkg/lotto.js";
+        await init();
 
-        window.generateNumbers = function() {
+        window.generateNumbers = function () {
             const jsValue = generate_lotto_numbers_wasm();
             const cleanedString = jsValue.replace(/[\[\]]/g, '');
             const numberArray = cleanedString.split(',').map(Number);
-            
+
             const lottoNumbers = document.getElementById('lotto-numbers');
             lottoNumbers.innerHTML = '';
             numberArray.forEach(num => {
@@ -207,22 +207,22 @@
             });
         };
 
-        window.generatePensionNumbers = function() {
+        window.generatePensionNumbers = function () {
             const pensionNumbers = document.getElementById('pension-numbers');
             pensionNumbers.innerHTML = '';
-            
+
             // 조 번호 생성 (1-7조)
             const groupNumber = Math.floor(Math.random() * 7) + 1;
-            
+
             const numbersRow = document.createElement('div');
             numbersRow.className = 'numbers-row';
-            
+
             // 조 번호 표시
             const groupDiv = document.createElement('div');
             groupDiv.className = 'number group-number';
             groupDiv.textContent = groupNumber + '조';
             numbersRow.appendChild(groupDiv);
-            
+
             // 6자리 번호 생성
             for (let i = 0; i < 6; i++) {
                 const numberDiv = document.createElement('div');
@@ -234,9 +234,10 @@
                 }
                 numbersRow.appendChild(numberDiv);
             }
-            
+
             pensionNumbers.appendChild(numbersRow);
         };
     </script>
 </body>
+
 </html>
