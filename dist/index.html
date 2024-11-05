@@ -1,97 +1,198 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 번호 자동 생성기</title>
+    
+    <!-- SEO 메타 태그 -->
+    <title>로또 & 연금복권 번호 생성기 | 무료 번호 추첨</title>
+    <meta name="description" content="무료 로또 및 연금복권 번호 자동 생성기입니다. 클릭 한 번으로 행운의 번호를 생성해보세요. 로또 6/45와 연금복권 720+ 번호 생성!">
+    <meta name="keywords" content="로또, 연금복권, 로또번호생성기, 연금복권번호생성기, 자동번호생성, 무료로또, 로또추첨, 행운번호">
+    
+    <!-- Open Graph 태그 -->
+    <meta property="og:title" content="로또 & 연금복권 번호 생성기">
+    <meta property="og:description" content="무료 로또 및 연금복권 번호 자동 생성기입니다. 클릭 한 번으로 행운의 번호를 생성해보세요.">
+    <meta property="og:type" content="website">
+    
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-radius: 15px;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            background-color: #f0f0f0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
         .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        header {
             text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 1rem;
+        .lottery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        #lotto-numbers {
+        .lottery-card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .lottery-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .numbers-container {
             display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             justify-content: center;
-            margin-bottom: 1rem;
+            margin: 1.5rem 0;
         }
 
         .number {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: #ffd700;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 5px;
             font-weight: bold;
             font-size: 1.2rem;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pension-number {
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+        }
+
+        .group-number {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            margin-right: 15px;
         }
 
         button {
-            background-color: #4CAF50;
-            border: none;
+            background: var(--primary-color);
             color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
         }
 
         button:hover {
-            background-color: #45a049;
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
+        .pension-group {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #4e54c8;
+        }
+
+        .numbers-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .lottery-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 
-<link rel="modulepreload" href="/lotto-7648653442efae28.js" crossorigin=anonymous integrity="sha384-5zrd7KBS00HI3pedcQX58wOhMhAUta59UQ02L6Qkd9FgVOTI99tCr6p9WgYILBj9">
-<link rel="preload" href="/lotto-7648653442efae28_bg.wasm" crossorigin=anonymous integrity="sha384-CM2WqVPpSKnuI/XslNvzTkSpm6n7ec7zJUB5ttzc+LSeyTa6IR7lnLm4nmy0eJoH" as="fetch" type="application/wasm"></head>
-<meta name="google-site-verification" content="LnvxA7imQ8V8ImWofdpfG6adhUiorBE-s0pHivVRPvQ" />
-
+<link rel="modulepreload" href="/lotto-a1d6c6f6d45605c5.js" crossorigin=anonymous integrity="sha384-I8I3dHs2CrHTy+OuA7VdMX2YVr6xbhlifkhss9pQwTmG10wMMnP2bUI3u71Ak8uL">
+<link rel="preload" href="/lotto-a1d6c6f6d45605c5_bg.wasm" crossorigin=anonymous integrity="sha384-kPgLHgyzAxQF0T6q8kQNBeVANIwCKffImdoUGYKLrRJxnHpjE+JnIeCrDuwVmgh8" as="fetch" type="application/wasm"></head>
 <body>
+    <div class="container">
+        <header>
+            <h1>로또 & 연금복권 번호 생성기</h1>
+            <p>행운의 번호를 무료로 생성해보세요!</p>
+        </header>
+
+        <div class="lottery-container">
+            <!-- 로또 6/45 카드 -->
+            <div class="lottery-card">
+                <h2>로또 6/45</h2>
+                <div id="lotto-numbers" class="numbers-container"></div>
+                <button onclick="generateNumbers()">로또번호 생성</button>
+            </div>
+
+            <!-- 연금복권 720+ 카드 -->
+            <div class="lottery-card">
+                <h2>연금복권 720+</h2>
+                <div id="pension-numbers" class="numbers-container">
+                    <div class="numbers-row"></div>
+                </div>
+                <button onclick="generatePensionNumbers()">연금복권번호 생성</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>※ 본 서비스는 무료로 제공되며, 당첨을 보장하지 않습니다.</p>
+            <p>© 2024 로또 & 연금복권 번호 생성기. All rights reserved.</p>
+        </footer>
+    </div>
+
     <script type="module">
+        import init, { generate_lotto_numbers_wasm, generate_pension_numbers_wasm } from './lotto-a1d6c6f6d45605c5.js';
+        await init("./lotto-a1d6c6f6d45605c5_bg.wasm");
 
-        import init, { generate_lotto_numbers_wasm } from './lotto-7648653442efae28.js'; // `pkg` 폴더 내 파일 경로 확인
-        await init("./lotto-7648653442efae28_bg.wasm");
-
-
-        window.generateNumbers = function () {
+        window.generateNumbers = function() {
             const jsValue = generate_lotto_numbers_wasm();
-            console.log(jsValue);
-
             const cleanedString = jsValue.replace(/[\[\]]/g, '');
-
-            // 2. 쉼표로 나누기
-            const stringArray = cleanedString.split(',');
-
-            // 3. 문자열을 숫자로 변환
-            const numberArray = stringArray.map(Number);
-            console.log(numberArray);
-         
+            const numberArray = cleanedString.split(',').map(Number);
+            
             const lottoNumbers = document.getElementById('lotto-numbers');
             lottoNumbers.innerHTML = '';
             numberArray.forEach(num => {
@@ -102,18 +203,41 @@
             });
         };
 
+        window.generatePensionNumbers = function() {
+            const pensionNumbers = document.getElementById('pension-numbers');
+            pensionNumbers.innerHTML = '';
+            
+            // 조 번호 생성 (1-7조)
+            const groupNumber = Math.floor(Math.random() * 7) + 1;
+            
+            const numbersRow = document.createElement('div');
+            numbersRow.className = 'numbers-row';
+            
+            // 조 번호 표시
+            const groupDiv = document.createElement('div');
+            groupDiv.className = 'number group-number';
+            groupDiv.textContent = groupNumber + '조';
+            numbersRow.appendChild(groupDiv);
+            
+            // 6자리 번호 생성
+            for (let i = 0; i < 6; i++) {
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'number pension-number';
+                if (i === 5) {
+                    numberDiv.textContent = Math.floor(Math.random() * 2) + 1;
+                } else {
+                    numberDiv.textContent = Math.floor(Math.random() * 9) + 1;
+                }
+                numbersRow.appendChild(numberDiv);
+            }
+            
+            pensionNumbers.appendChild(numbersRow);
+        };
     </script>
-    <div class="container">
-        <h1>로또 번호 자동 생성기</h1>
-        <div id="lotto-numbers"></div>
-        <button onclick="generateNumbers()">번호 생성하기</button>
-    </div>
 
-
-
-<script type="module" nonce="yPN2LrWVlNHW3kjjXLiyng==">
-import init, * as bindings from '/lotto-7648653442efae28.js';
-const wasm = await init('/lotto-7648653442efae28_bg.wasm');
+<script type="module" nonce="yg+GHcnLfolnHRkcGFKBpw==">
+import init, * as bindings from '/lotto-a1d6c6f6d45605c5.js';
+const wasm = await init('/lotto-a1d6c6f6d45605c5_bg.wasm');
 
 
 window.wasmBindings = bindings;
@@ -251,5 +375,4 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 
 })()
 </script></body>
-
 </html>

@@ -33,6 +33,22 @@ export function generate_lotto_numbers_wasm() {
     return ret;
 }
 
+/**
+ * @returns {any}
+ */
+export function generate_pension_numbers() {
+    const ret = wasm.generate_pension_numbers();
+    return ret;
+}
+
+/**
+ * @returns {any}
+ */
+export function generate_pension_numbers_wasm() {
+    const ret = wasm.generate_pension_numbers_wasm();
+    return ret;
+}
+
 function notDefined(what) { return () => { throw new Error(`${what} is not defined`); }; }
 
 const __wbindgen_enum_RequestMode = ["same-origin", "no-cors", "cors", "navigate"];

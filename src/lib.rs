@@ -44,6 +44,34 @@ pub fn generate_lotto_numbers() -> JsValue {
 pub fn generate_lotto_numbers_wasm() -> JsValue {
     generate_lotto_numbers() // JSValue 반환
 }
+#[wasm_bindgen]
+pub fn generate_pension_numbers() -> JsValue {
+    let mut numbers = Vec::new();
+    
+    // 조 번호 생성 (1-7)
+    let group = (Math::random() * 7.0).floor() as u32 + 1;
+    numbers.push(group);
+    
+    // 연금복권 6자리 숫자 생성
+    // 처음 5자리는 1-9 사이의 숫자
+    for _ in 0..5 {
+        let number = (Math::random() * 9.0).floor() as u32 + 1;
+        numbers.push(number);
+    }
+    
+    // 마지막 자리는 1 또는 2
+    let last_number = (Math::random() * 2.0).floor() as u32 + 1;
+    numbers.push(last_number);
+
+    // JSON 문자열로 변환 후 JsValue로 변환
+    let json_string = serde_json::to_string(&numbers).unwrap();
+    JsValue::from_str(&json_string)
+}
+
+#[wasm_bindgen]
+pub fn generate_pension_numbers_wasm() -> JsValue {
+    generate_pension_numbers()
+}
 // #[wasm_bindgen]
 // pub fn greet(name: &str) {
 //     let window = window().unwrap();
